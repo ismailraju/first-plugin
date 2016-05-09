@@ -119,6 +119,8 @@ class First_Plugin {
 		 */
 		require_once plugin_dir_path( dirname( __FILE__ ) ) . 'public/class-first-plugin-public.php';
 
+		//require_once plugin_dir_path( dirname( __FILE__ ) ) . 'admin/partials/first-plugin-modals.php';
+
 		$this->loader = new First_Plugin_Loader();
 
 	}

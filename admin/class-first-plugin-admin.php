@@ -98,6 +98,7 @@ class First_Plugin_Admin {
 
 		////datatable show
 		wp_enqueue_style( $this->plugin_name.'jquery.dataTables.min.css', plugin_dir_url( __FILE__ ) . 'DataTables-1.10.11/media/css/jquery.dataTables.min.css', array(), $this->version, 'all' );
+		wp_enqueue_style( $this->plugin_name.'buttons.dataTables.min.css', plugin_dir_url( __FILE__ ) . 'DataTables-1.10.11/extensions/Buttons/css/buttons.dataTables.min.css', array(), $this->version, 'all' );
 
 
 
@@ -157,6 +158,8 @@ class First_Plugin_Admin {
 
 		////datatable show 		
 		wp_enqueue_script( $this->plugin_name.'jquery.dataTables.min.js', plugin_dir_url( __FILE__ ) . 'DataTables-1.10.11/media/js/jquery.dataTables.min.js', array( 'jquery' ), $this->version, true );
+
+		wp_enqueue_script( $this->plugin_name.'dataTables.buttons.min.js', plugin_dir_url( __FILE__ ) . 'DataTables-1.10.11/extensions/Buttons/js/dataTables.buttons.min.js', array( 'jquery' ), $this->version, true );
 
 
 
@@ -510,7 +513,7 @@ function my_action_db_customer_info_callback() {
 		    //echo gettype($stuffName);
 
 		    global $wpdb;
-  			$sql = "SELECT * FROM wp_ab_customers";
+  			$sql = "SELECT id, name, phone, email, notes FROM wp_ab_customers";
   			$results = $wpdb->get_results($sql);
   			echo json_encode($results);
 			wp_die();

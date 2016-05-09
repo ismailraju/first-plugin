@@ -4,97 +4,91 @@
 
 	jQuery(document).ready(function($) {
 
+		//readCustomerInfoFunction();
+		
+
+		$('#table1').DataTable( {
+
+        "ajax": {
+
+        	url:ajax_object.ajax_url,
+			type:'POST',
+			//dataType: "json",
+			//dataType: "Array",
+			"dataSrc": "",
+			data:{'action': 'my_action_customer_info'},
+		
+			
+
+        },
+        "columns": [
+            { "data": "id" },
+            { "data": "name" },
+            { "data": "phone" },
+            { "data": "email" },
+            { "data": "notes" }
+        ],
+         dom: 'Bfrtip',
+        buttons: [
+            {
+                text: 'New Customer',
+                action: function ( e, dt, node, config ) {
+
+	                 $("#email_id_error").hide();
+					 $("#email_id_input_error").hide();
+					 $("#customer_name_error").hide();
+					 $("#phn_number_error").hide();
+					 
+                	$('#newCustomerModal').modal('show');//modals unshow
+                    //alert( 'Button activated' );
+
+                }
+            }
+        ]
+
+    } );
 
 
-/////////////////////////action function///////////////////////////////
 
-function readCustomerInfoFunction() {
+		/////////////////////////action function///////////////////////////////
 
-	console.log("addNewCustomerFunction()");
+		function readCustomerInfoFunction() {
 
-	var data  = {
-		'action': 'my_action_customer_info'
+			console.log("readCustomerInfoFunction()");
 
-	};
+			var data  = {
+				'action': 'my_action_customer_info'
 
-
-
-	$.ajax({
-		url:ajax_object.ajax_url,
-		type:'POST',
-		dataType: "json",
-		//dataType: "Array",
-		data:data,
-		success:function(response) {
-				console.log(response);
-				//alert(response);
-				// $("#responsecontainer").html(response);
+			};
 
 
 
-				var table_string='';
+			$.ajax({
+				url:ajax_object.ajax_url,
+				type:'POST',
+				//dataType: "json",
+				//dataType: "Array",
+				data:data,
 
-				table_string+="<thead> <tr>";
-				
-				table_string+=" <th>ID</th>";
-				table_string+=" <th>Name</th>";
-				table_string+=" <th>Phone</th>";
-				table_string+=" <th>Email</th>";
-				table_string+=" <th>Notes</th>";
-
-				table_string+="</thead> </tr>";
-
-				for(var i=0;i<response.length;i++){
-
-
-					table_string+="<tr>";
-
-					table_string+="<td align=center>";
-					table_string+=response[i].id;
-					table_string+="</td>";
-
-					table_string+="<td align=center>";
-					table_string+=response[i].name;
-					table_string+="</td>";
-
-					table_string+="<td align=center>";
-					table_string+=response[i].phone;
-					table_string+="</td>";
-
-					table_string+="<td align=center>";
-					table_string+=response[i].email;
-					table_string+="</td>";
-
-					table_string+="<td align=center>";
-					table_string+=response[i].notes;
-					table_string+="</td>";
-
-					
-					table_string+="</tr>";				      
-			    }
-
-
-				table_string+="</table>";
-
-				$("#responsecontainer").html(table_string);
-
-
+				success:function(response) {
+						console.log(response);
 									
 
-				}
+						}
 
-		});
+			});
 
-}
+		}
+					
+ 
 
+				$("#testBtn").click(function(){
+						console.log("helo");
 
-		$("#testBtn").click(function(){
-				console.log("helo");
-
-				readCustomerInfoFunction();
-				$('#cust_table').DataTable();
-        	
-    	});
+						readCustomerInfoFunction();
+						//$('#cust_table').DataTable();
+		        	
+		    	});
 
 /////////////////////////element action///////////////////////////////
 

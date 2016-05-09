@@ -438,7 +438,11 @@ function addNewCustomerFunction(cust_name,emailAddress,phn_num,descript) {
 		data:data,
 		success:function(response1) {
 				console.log(response1);
-				alert(response1);
+				//alert(response1);
+
+				 $('#newCustomerModal').modal('hide');
+
+
 					
 
 				}
